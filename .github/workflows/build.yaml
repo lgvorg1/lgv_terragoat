@@ -2,7 +2,7 @@ name: build
 on:
   push:
     branches:
-      - master
+      - masterxx
 jobs:
   build:
     runs-on: [self-hosted, public, linux, x64]
