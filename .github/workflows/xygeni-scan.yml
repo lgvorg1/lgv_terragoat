@@ -24,6 +24,15 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for better relevancy of analysis
 
+      - name: Xygeni-Scanner
+        uses: xygeni/xygeni-action@v3.2.0
+        id: Xygeni-Scanner
+        with:
+          xygeni_url: https://api.xygeni.io
+          token: ${{ secrets.XYGENI_TOKEN }}
+          gh_token: ${{ secrets.PAT_FOR_XYGENI_SCAN }}
+
+          
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12
         with:
@@ -42,10 +51,4 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: results.sarif
-      - name: Xygeni-Scanner
-        uses: xygeni/xygeni-action@v3.2.0
-        id: Xygeni-Scanner
-        with:
-          xygeni_url: https://api.xygeni.io
-          token: ${{ secrets.XYGENI_TOKEN }}
-          gh_token: ${{ secrets.PAT_FOR_XYGENI_SCAN }}
+      
